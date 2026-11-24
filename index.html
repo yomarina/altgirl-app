@@ -479,6 +479,21 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
   .tlink{min-height:44px;display:inline-flex;align-items:center}
   summary{min-height:44px}
 }
+
+/* YO Hive: шестигранник — общий знак семьи брендов (24.11) */
+:root{--hex:polygon(50% 0,93.3% 25%,93.3% 75%,50% 100%,6.7% 75%,6.7% 25%)}
+.mhero{filter:drop-shadow(0 18px 36px rgba(107,87,246,.5))}
+.mhero .hexwrap{width:78%;aspect-ratio:1;clip-path:var(--hex);background:var(--lime);padding:3px;animation:bob 4.5s ease-in-out infinite}
+.mhero .hexwrap .disc{width:100%;height:100%;border-radius:0;clip-path:var(--hex);box-shadow:none;animation:none}
+.mhero .ring i{border-radius:0;clip-path:var(--hex)}
+.ulist li:before,.cardsec li:before{clip-path:var(--hex);width:.6rem;height:.6rem}
+.tag.live:before{border-radius:0;clip-path:var(--hex)}
+.yo-pin{border-radius:0;clip-path:var(--hex);box-shadow:none;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--pin) 70%,transparent))}
+.yo-node.live .yo-pin{box-shadow:none}
+.yo-orbit{border:0;border-radius:0;clip-path:var(--hex);background:color-mix(in srgb,var(--pin) 22%,transparent)}
+.yo-orbit::after{border:0;border-radius:0;clip-path:var(--hex);background:color-mix(in srgb,var(--pin) 10%,transparent)}
+.yo-legend i{border-radius:0;clip-path:var(--hex);width:9px;height:9px}
+@media(prefers-reduced-motion:reduce){.mhero .hexwrap{animation:none}}
 </style>
 <!-- PostHog: pageviews only on yo.finance (no autocapture, no recordings); URLs are sent without query and hash. -->
 <script>
@@ -524,7 +539,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 <div class="hud" aria-hidden="true"><span class="mono st"><i></i>Task done</span><span class="mono st lime">Court 2 at 7:00 · ride at 6:35 ✓</span></div>
 <div class="wrap">
   <div class="hero-txt">
-    <div class="mhero" aria-hidden="true"><div class="disc"></div><div class="ring">
+    <div class="mhero" aria-hidden="true"><div class="hexwrap"><div class="disc"></div></div><div class="ring">
       <i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><ellipse cx="13" cy="9" rx="6" ry="6.5"/><path d="M8.8 13.6 4 19.5"/></svg></i>
       <i><svg viewBox="0 0 24 24" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16v-4.5L7 7h10l2 4.5V16"/><path d="M4 12h16"/><circle cx="8" cy="16" r="1.6"/><circle cx="16" cy="16" r="1.6"/></svg></i>
       <i><svg viewBox="0 0 24 24" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c4.8 0 8 3 8 7s-3.2 7-8 7c-1 0-2-.1-2.9-.4L5 19l1-3.2C4.7 14.6 4 12.9 4 11c0-4 3.2-7 8-7z"/></svg></i>
@@ -750,9 +765,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
     <div class="yo-map-stage" id="mapStage">
     <svg viewBox="0 0 1200 600" aria-hidden="true">
       <defs>
-        <pattern id="yoDots" width="7.5" height="7.5" patternUnits="userSpaceOnUse">
-          <circle cx="2.25" cy="2.25" r="1.55" fill="rgba(194,188,237,.52)"/>
-        </pattern>
+        <pattern id="yoDots" width="11.407" height="9.4" patternUnits="userSpaceOnUse"><g fill="rgba(194,188,237,.5)"><polygon points="0.00,-2.60 2.25,-1.30 2.25,1.30 0.00,2.60 -2.25,1.30 -2.25,-1.30"/><polygon points="0.00,6.80 2.25,8.10 2.25,10.70 0.00,12.00 -2.25,10.70 -2.25,8.10"/><polygon points="11.41,-2.60 13.66,-1.30 13.66,1.30 11.41,2.60 9.16,1.30 9.16,-1.30"/><polygon points="11.41,6.80 13.66,8.10 13.66,10.70 11.41,12.00 9.16,10.70 9.16,8.10"/><polygon points="5.70,-2.60 7.95,-1.30 7.95,1.30 5.70,2.60 3.45,1.30 3.45,-1.30"/><polygon points="5.70,6.80 7.95,8.10 7.95,10.70 5.70,12.00 3.45,10.70 3.45,8.10"/><polygon points="2.85,2.10 5.10,3.40 5.10,6.00 2.85,7.30 0.60,6.00 0.60,3.40"/><polygon points="8.55,2.10 10.81,3.40 10.81,6.00 8.55,7.30 6.30,6.00 6.30,3.40"/></g></pattern>
       </defs>
       <g class="yo-world" fill-rule="evenodd">
         <path d="M 1200.0,353.6 L 1200.0,355.2 L 1195.8,356.7 L 1195.3,355.5 L 1200.0,353.6 Z M 1192.2,357.9 L 1195.7,358.8 L 1195.2,360.5 L 1191.3,360.5 L 1192.2,357.9 Z M 0.0,353.6 L 0.3,355.0 L 0.0,355.2 L 0.0,353.6 Z"/>
