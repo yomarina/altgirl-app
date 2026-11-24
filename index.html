@@ -464,7 +464,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
   .yo-orbit{width:26px;height:26px}.yo-pin{width:10px;height:10px}
   .yo-legend{display:none}
   .yo-citylist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin-top:1rem}
-  .yo-citylist div{border:1px solid var(--line);padding:.7rem .8rem;background:var(--panel)}
+  .yo-citylist > div{border:1px solid var(--line);padding:.7rem .8rem;background:var(--panel)}
   .yo-citylist b{display:block;font:600 .95rem/1.2 var(--sans)}
   .yo-citylist small{font:500 .62rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#C7BDFF}
   .yo-citylist .live small{color:var(--lime)}.yo-citylist .progress small{color:#B68EFF}
@@ -499,25 +499,18 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 .yo-callout{cursor:pointer}
 .yo-callout:hover{filter:brightness(1.15)}
 .yo-callout:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
-.yo-votes{margin-top:.35rem;font:500 .6rem/1.2 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:#d9d5ff;white-space:nowrap}
-.yo-votes b{color:var(--lime);font-weight:600}
-.board{margin-top:1.5rem;max-width:46rem}
-.board-head{display:grid;gap:.35rem;margin-bottom:.4rem}
-.board-head h3{font:600 1.25rem/1.2 var(--sans);letter-spacing:-.01em}
-.board-list{list-style:none;display:grid;gap:.5rem;margin-top:.6rem}
-.board-list li{display:grid;grid-template-columns:2rem minmax(0,1fr) auto auto;gap:.8rem;align-items:center;padding:.6rem .8rem;border:1px solid var(--line);background:var(--panel)}
-.board-list .rk{width:1.8rem;height:2rem;clip-path:var(--hex);display:grid;place-items:center;background:rgba(185,173,255,.18);font:600 .7rem/1 var(--mono);color:#d9d5ff}
-.board-list li.live .rk{background:var(--lime);color:var(--bg)}
-.board-list .nm b{display:block;font:600 1rem/1.2 var(--sans)}
-.board-list .nm small{font:500 .62rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#C7BDFF}
-.board-list li.live .nm small{color:var(--lime)}.board-list li.progress .nm small{color:#B68EFF}
-.board-list .ct{font:500 .72rem/1.2 var(--mono);color:var(--dim);text-align:right;white-space:nowrap}
-.board-list .ct b{color:var(--lime);font-weight:600}
-.board-list .vote{min-height:44px;padding:.6rem .9rem;border:1px solid rgba(209,249,49,.5);background:transparent;color:var(--lime);font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:background .3s cubic-bezier(.22,1,.36,1),color .3s cubic-bezier(.22,1,.36,1)}
-.board-list .vote:hover{background:var(--lime);color:var(--bg)}
-.board-list li.mine{border-color:rgba(209,249,49,.6)}
-@media(max-width:480px){.board-list li{grid-template-columns:1.8rem minmax(0,1fr) auto;row-gap:.4rem}.board-list .ct{grid-column:2;text-align:left}.board-list .vote{grid-column:3;grid-row:1 / span 2}}
+.yo-votes{display:flex;align-items:stretch;margin-top:.45rem;width:max-content;border:1px solid rgba(209,249,49,.55);font:500 .58rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.yo-votes span{padding:.3rem .45rem;color:#d9d5ff}
+.yo-votes b{padding:.3rem .5rem;background:var(--lime);color:var(--bg);font-weight:600;min-width:1.6rem;text-align:center}
 .hide-mascot .mascot{opacity:0!important;pointer-events:none}
+
+/* форма вейтлиста: лайфстайл и карта (запись 88, Вадим) */
+.join label.q .faint{text-transform:none;letter-spacing:0;font-family:var(--sans);margin-left:.4rem}
+.cardhold{display:flex;gap:.7rem;align-items:flex-start;cursor:pointer;color:var(--dim);font-size:var(--s);line-height:1.45;padding:.8rem .9rem;border:1px solid var(--line)}
+.cardhold b{color:var(--ink);font-weight:600}
+.cardhold input{width:1.15rem;height:1.15rem;margin-top:.1rem;accent-color:var(--lime);flex:none}
+.yo-citylist [data-city]{cursor:pointer}
+.yo-citylist .yo-votes{margin-top:.5rem}
 </style>
 <!-- PostHog: pageviews only on yo.finance (no autocapture, no recordings); URLs are sent without query and hash. -->
 <script>
@@ -957,10 +950,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
     </div>
     <div class="yo-legend" aria-hidden="true"><span><i class="live"></i>LIVE</span><span><i class="progress"></i>IN PROGRESS</span><span><i class="future"></i>NEXT</span></div>
   </div>
-  <div class="board" id="board">
-    <div class="board-head"><h3>City leaderboard</h3><p class="dim">Joining the waitlist is a vote. The city with the most people on the list opens next.</p></div>
-    <ol class="board-list" id="boardList"></ol>
-  </div>
+  <div class="yo-citylist"><div class="live" data-city="danang" role="button" tabindex="0" aria-label="Join the waitlist for Da Nang"><b>Da Nang</b><small>Live · alpha</small><div class="yo-votes" data-city="danang"></div></div><div class="progress" data-city="paris" role="button" tabindex="0" aria-label="Join the waitlist for Paris"><b>Paris</b><small>In progress</small><div class="yo-votes" data-city="paris"></div></div><div class="progress" data-city="belgrade" role="button" tabindex="0" aria-label="Join the waitlist for Belgrade"><b>Belgrade</b><small>In progress</small><div class="yo-votes" data-city="belgrade"></div></div><div class="future" data-city="lisbon" role="button" tabindex="0" aria-label="Join the waitlist for Lisbon"><b>Lisbon</b><small>Next</small><div class="yo-votes" data-city="lisbon"></div></div><div class="future" data-city="seoul" role="button" tabindex="0" aria-label="Join the waitlist for Seoul"><b>Seoul</b><small>Next</small><div class="yo-votes" data-city="seoul"></div></div><div class="future" data-city="miami" role="button" tabindex="0" aria-label="Join the waitlist for Miami"><b>Miami</b><small>Next</small><div class="yo-votes" data-city="miami"></div></div><div class="future" data-city="saopaulo" role="button" tabindex="0" aria-label="Join the waitlist for São Paulo"><b>São Paulo</b><small>Next</small><div class="yo-votes" data-city="saopaulo"></div></div><div class="future" data-city="buenosaires" role="button" tabindex="0" aria-label="Join the waitlist for Buenos Aires"><b>Buenos Aires</b><small>Next</small><div class="yo-votes" data-city="buenosaires"></div></div></div>
 </div></section>
 
 <!-- 6c. вейтлист TestFlight: единственная форма на странице -->
@@ -972,7 +962,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
     <div class="joinbox">
       <form class="join panel" novalidate>
         <input type="email" name="contact" id="email" placeholder="your@email.com" autocomplete="email" aria-label="Email for the beta invite" required>
-        <label class="q mono" id="cityq">Vote: which city do you want her in?</label>
+        <label class="q mono" id="cityq">Your city <span class="faint">Every signup is a vote for it</span></label>
         <div class="chips" role="group" aria-labelledby="cityq">
           <button type="button" class="chip" data-city="danang" aria-pressed="false">Da Nang</button>
           <button type="button" class="chip" data-city="paris" aria-pressed="false">Paris</button>
@@ -985,13 +975,27 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
           <button type="button" class="chip" data-city="other" aria-pressed="false">My city isn’t listed</button>
         </div>
         <input type="text" name="othercity" id="othercity" placeholder="Type your city" aria-label="Your city" autocomplete="address-level2" hidden>
+        <label class="q mono" id="lsq">What fills your week? <span class="faint">Pick up to 3</span></label>
+        <div class="chips" role="group" aria-labelledby="lsq">
+          <button type="button" class="chip ls" data-ls="travel" aria-pressed="false">Travel</button>
+          <button type="button" class="chip ls" data-ls="sport" aria-pressed="false">Sport</button>
+          <button type="button" class="chip ls" data-ls="food" aria-pressed="false">Food</button>
+          <button type="button" class="chip ls" data-ls="music" aria-pressed="false">Music</button>
+          <button type="button" class="chip ls" data-ls="study" aria-pressed="false">Study</button>
+          <button type="button" class="chip ls" data-ls="building-things" aria-pressed="false">Building things</button>
+          <button type="button" class="chip ls" data-ls="mind-spirit" aria-pressed="false">Mind & spirit</button>
+          <button type="button" class="chip ls" data-ls="video-creating" aria-pressed="false">Video & creating</button>
+          <button type="button" class="chip ls" data-ls="gaming" aria-pressed="false">Gaming</button>
+          <button type="button" class="chip ls" data-ls="series-movies" aria-pressed="false">Series & movies</button>
+        </div>
+        <label class="cardhold"><input type="checkbox" id="cardhold" name="card"><span><b>Hold a YO card for me too.</b> Free, cancel any time. Cards will be issued by licensed partners.</span></label>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="cta solid" type="submit" id="go">Join the beta list</button>
-        <p class="fine">Free. Works for iPhone and Android.</p>
+        <button class="cta solid" type="submit" id="go">Join the waitlist</button>
+        <p class="fine">One list for the beta, your city and the card. Invites go out in small batches. Works for iPhone and Android.</p>
       </form>
       <div class="ok panel" role="status">
         <h3>You’re on the list.</h3>
-        <p class="dim">We’ll send the beta invite to <b id="okmail"></b> when it opens.</p>
+        <p class="dim">We’ll send the beta invite to <b id="okmail"></b> when it opens.<span id="okcard" hidden> Your card is on hold too.</span></p>
       </div>
     </div>
   </div>
@@ -1043,13 +1047,16 @@ const FORM_ENDPOINT = "";
   f.querySelectorAll('.chip[data-city]').forEach(function(c){c.addEventListener('click',function(){
     f.querySelectorAll('.chip[data-city]').forEach(function(x){x.setAttribute('aria-pressed','false')});
     c.setAttribute('aria-pressed','true');city=c.dataset.city;other.hidden=city!=='other';if(city==='other')other.focus();});});
+  var ls=[];f.querySelectorAll('.chip.ls').forEach(function(c){c.addEventListener('click',function(){var k=c.dataset.ls,i=ls.indexOf(k);
+    if(i>-1){ls.splice(i,1);c.setAttribute('aria-pressed','false')}else{if(ls.length>=3)return;ls.push(k);c.setAttribute('aria-pressed','true')}})});
   f.addEventListener('submit',function(e){e.preventDefault();
     var c=f.querySelector('[name=contact]'),v=c.value.trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){c.classList.add('err');c.focus();return}c.classList.remove('err');
     var cv=city==='other'?('o:'+other.value.trim().toLowerCase().replace(/[^a-zÀ-ɏ -]/g,'').slice(0,14)):city;
     var page=('beta|'+(cv||'-')+(ref?'|ref:'+ref:'')).slice(0,40);
-    var data={contact:v,role:'user',page:page,ts:new Date().toISOString(),website:f.querySelector('[name=website]').value};
-    var done=function(){f.style.display='none';document.getElementById('okmail').textContent=v;document.querySelector('.ok').classList.add('show');document.dispatchEvent(new CustomEvent('yo:voted',{detail:cv}))};
+    var card=document.getElementById('cardhold').checked;if(card)page=(page+'|card').slice(0,48);
+    var data={contact:v,role:'user',page:page,city:cv||'',lifestyle:ls.join(','),card:card,ts:new Date().toISOString(),website:f.querySelector('[name=website]').value};
+    var done=function(){f.style.display='none';document.getElementById('okmail').textContent=v;document.getElementById('okcard').hidden=!card;document.querySelector('.ok').classList.add('show');document.dispatchEvent(new CustomEvent('yo:voted',{detail:cv}))};
     var fail=function(){c.classList.add('err');c.focus()};
     if(FORM_ENDPOINT){fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(r){r.ok?done():fail()},fail)}
     else{try{var a=JSON.parse(localStorage.getItem('yo_leads')||'[]');a.push(data);localStorage.setItem('yo_leads',JSON.stringify(a))}catch(_){}done()}
@@ -1148,16 +1155,13 @@ const COUNTS_ENDPOINT = "";
   function n(k){return (counts[k]||0)+(mine===k?1:0)}
   function fmt(x){return x.toLocaleString('en-US')}
   function render(){
-    document.querySelectorAll('.yo-votes').forEach(function(el){var x=n(el.dataset.city);el.innerHTML='Waitlist: <b>'+fmt(x)+'</b>'});
-    var list=document.getElementById('boardList');if(!list)return;
-    var rows=C.slice().sort(function(a,b){return n(b[0])-n(a[0])||ORDER[a[2]]-ORDER[b[2]]});
-    list.innerHTML=rows.map(function(c,i){var x=n(c[0]);return '<li class="'+c[2]+(mine===c[0]?' mine':'')+'"><span class="rk">'+(i+1)+'</span><span class="nm"><b>'+c[1]+'</b><small>'+c[3]+'</small></span><span class="ct">'+(x?'<b>'+fmt(x)+'</b> on the waitlist':(mine===c[0]?'your vote':(c[2]==='live'?'':'come next')))+'</span><button type="button" class="vote" data-city="'+c[0]+'">'+(mine===c[0]?'On the list':'Join waitlist')+'</button></li>'}).join('');
+    document.querySelectorAll('.yo-votes').forEach(function(el){var x=n(el.dataset.city);el.innerHTML='<span>Waitlist</span><b>'+fmt(x)+'</b>'});
   }
   function vote(k){var j=document.getElementById('join');j.scrollIntoView({behavior:'smooth',block:'start'});
     setTimeout(function(){var ch=document.querySelector('form.join .chip[data-city="'+k+'"]');if(ch&&ch.getAttribute('aria-pressed')!=='true')ch.click();var e=document.getElementById('email');if(e&&!e.value)e.focus({preventScroll:true})},600)}
-  document.addEventListener('click',function(e){var b=e.target.closest('.board-list .vote');if(b){vote(b.dataset.city);return}
+  document.addEventListener('click',function(e){var b=e.target.closest('.yo-citylist [data-city]');if(b){vote(b.dataset.city);return}
     var c=e.target.closest('.yo-callout');if(c){var nd=c.closest('.yo-node');if(nd)vote(nd.dataset.city)}});
-  document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('yo-callout')){e.preventDefault();vote(e.target.closest('.yo-node').dataset.city)}});
+  document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('.yo-callout,.yo-citylist [data-city]')){e.preventDefault();var nd=e.target.closest('[data-city]');vote(nd.dataset.city)}});
   document.addEventListener('yo:voted',function(e){var k=e.detail;if(C.some(function(c){return c[0]===k})){mine=k;try{localStorage.setItem('yo_vote',k)}catch(_){}render()}});
   render();
   if(COUNTS_ENDPOINT){fetch(COUNTS_ENDPOINT).then(function(r){return r.json()}).then(function(d){counts=Object.assign({},CITY_COUNTS,d||{});render()}).catch(function(){})}
