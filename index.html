@@ -1151,7 +1151,7 @@ const COUNTS_ENDPOINT = "";
     document.querySelectorAll('.yo-votes').forEach(function(el){var x=n(el.dataset.city);el.innerHTML=x?'<b>'+fmt(x)+'</b> on the waitlist':'tap to vote'});
     var list=document.getElementById('boardList');if(!list)return;
     var rows=C.slice().sort(function(a,b){return n(b[0])-n(a[0])||ORDER[a[2]]-ORDER[b[2]]});
-    list.innerHTML=rows.map(function(c,i){var x=n(c[0]);return '<li class="'+c[2]+(mine===c[0]?' mine':'')+'"><span class="rk">'+(i+1)+'</span><span class="nm"><b>'+c[1]+'</b><small>'+c[3]+'</small></span><span class="ct">'+(x?'<b>'+fmt(x)+'</b> on the waitlist':(mine===c[0]?'your vote':'be the first'))+'</span><button type="button" class="vote" data-city="'+c[0]+'">'+(mine===c[0]?'Voted':'Vote')+'</button></li>'}).join('');
+    list.innerHTML=rows.map(function(c,i){var x=n(c[0]);return '<li class="'+c[2]+(mine===c[0]?' mine':'')+'"><span class="rk">'+(i+1)+'</span><span class="nm"><b>'+c[1]+'</b><small>'+c[3]+'</small></span><span class="ct">'+(x?'<b>'+fmt(x)+'</b> on the waitlist':(mine===c[0]?'your vote':(c[2]==='live'?'':'come next')))+'</span><button type="button" class="vote" data-city="'+c[0]+'">'+(mine===c[0]?'Voted':'Vote')+'</button></li>'}).join('');
   }
   function vote(k){var j=document.getElementById('join');j.scrollIntoView({behavior:'smooth',block:'start'});
     setTimeout(function(){var ch=document.querySelector('form.join .chip[data-city="'+k+'"]');if(ch&&ch.getAttribute('aria-pressed')!=='true')ch.click();var e=document.getElementById('email');if(e&&!e.value)e.focus({preventScroll:true})},600)}
