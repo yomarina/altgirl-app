@@ -513,6 +513,18 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 .cardhold input{width:1.15rem;height:1.15rem;margin-top:.1rem;accent-color:var(--lime);flex:none}
 .yo-citylist [data-city]{cursor:pointer}
 .yo-citylist .yo-votes{margin-top:.5rem}
+
+/* золотое правило (24.11): блоки чередуются — Альтуха справа, потом слева, и так далее */
+@media(min-width:1000px){
+  #card[data-side=l] .handcard{right:auto;left:26vw;transform:translateY(20px) rotate(-4deg)}
+  #card[data-side=l] .handcard.on{transform:rotate(-2deg)}
+  section[data-side=l] .wrap{padding-left:calc(40vw + 1rem)}
+  #card[data-side=l] .wrap{padding-left:calc(50vw + 1rem)}
+}
+@media(max-width:760px){
+  .mpose{text-align:right}
+  section[data-side=l] .mpose{text-align:left}
+}
 </style>
 <!-- PostHog: pageviews only on yo.finance (no autocapture, no recordings); URLs are sent without query and hash. -->
 <script>
@@ -574,7 +586,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 </div></section>
 
 <!-- 1b. начинаем с Дананга -->
-<section class="slide" id="danang" data-pose="padel"><div class="wrap">
+<section class="slide" id="danang" data-pose="padel" data-side="l"><div class="wrap">
   <div class="one">
 
     <h2>Starting in <span class="hl"><span>Da Nang.</span></span></h2>
@@ -597,7 +609,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 </div></section>
 
 <!-- 4. не замена ChatGPT -->
-<section class="slide" data-pose="turn-01" data-side="l"><div class="wrap">
+<section class="slide" data-pose="turn-01"><div class="wrap">
   <div class="one">
 
     <h2>ChatGPT for work. <span class="hl"><span>Altgirl for life.</span></span></h2>
@@ -607,7 +619,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 
 
 <!-- 2. боль -->
-<section class="prob slide" data-pose="run"><div class="wrap">
+<section class="prob slide" data-pose="run" data-side="l"><div class="wrap">
   <div class="one">
 
     <h2>Six apps to get to <span class="hl"><span>one padel game.</span></span></h2>
@@ -650,7 +662,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 </div></section>
 
 <!-- 3d. дела в городе: три плитки, одна строка -->
-<section class="slide" id="errands" data-pose="wave-phone"><div class="wrap">
+<section class="slide" id="errands" data-pose="wave-phone" data-side="l"><div class="wrap">
   <div class="one">
 
     <h2>Dinner, taxi, visa run. <span class="hl"><span>You name it, it’s done.</span></span></h2>
@@ -676,7 +688,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 
 
 <!-- 5. приватность -->
-<section class="slide" data-pose="sit" data-side="l"><div class="wrap">
+<section class="slide" data-pose="sit"><div class="wrap">
   <div class="one">
 
     <h2>She learns from you. <span class="hl"><span>Only you.</span></span></h2>
@@ -693,7 +705,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 
 
 <!-- 6b. карта: живая 3D-сцена + УТП -->
-<section class="slide" id="card" data-pose="reach"><div class="handcard" aria-hidden="true"><div class="glasswrap"><svg class="ycard" viewBox="0 0 1000 630" role="img" aria-label="YO:Altgirl card">
+<section class="slide" id="card" data-pose="reach" data-side="l"><div class="handcard" aria-hidden="true"><div class="glasswrap"><svg class="ycard" viewBox="0 0 1000 630" role="img" aria-label="YO:Altgirl card">
   <defs>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".09"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".04"/><stop offset="1" stop-color="#e9e5ff" stop-opacity=".08"/></linearGradient><linearGradient id="shine" x1="0" y1="0" x2=".6" y2=".6"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <linearGradient id="holo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4fd6e8"/><stop offset=".3" stop-color="#d1f931"/><stop offset=".55" stop-color="#ff7ad9"/><stop offset=".8" stop-color="#8b6dff"/><stop offset="1" stop-color="#4fd6e8"/></linearGradient>
@@ -1027,7 +1039,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 </div></section>
 
 <!-- 9. финал -->
-<section class="final slide" data-pose="squat-neon"><div class="wrap">
+<section class="final slide" data-pose="squat-neon" data-side="l"><div class="wrap">
   <h2>Less apps, <span class="hl"><span>more life.</span></span></h2>
   <a class="cta solid" href="#join">Get the app first</a>
 </div></section>
