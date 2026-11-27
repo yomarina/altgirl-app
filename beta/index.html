@@ -308,6 +308,9 @@ h1 .box{display:inline-block;padding:.02em .18em .06em;border:1.5px solid var(--
 .mascot{transition:opacity .4s}
 .mascot.off{opacity:0}
 .mascot.fade{opacity:0}
+/* 26.11: тяжёлые тени на огромной фиксированной картинке давали артефакты и белые кадры при прокрутке */
+.mascot{will-change:opacity,transform;contain:layout paint}
+.mascot img#pose{filter:none!important}
 @media(max-width:999px){.scene iframe{-webkit-mask:linear-gradient(180deg,#000 55%,transparent 85%);mask:linear-gradient(180deg,#000 55%,transparent 85%)}.cardscene .wrap{padding-top:55vh}}
 
 /* карта как у Сергея: голостекло, срезанный угол, фольга, лаймовый чип и дорожки */
